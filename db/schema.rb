@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_192720) do
+ActiveRecord::Schema.define(version: 2019_05_15_194208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2019_05_15_192720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_landmarks_on_location_id"
+  end
+
+  create_table "location_tags", force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_tags_on_location_id"
+    t.index ["tag_id"], name: "index_location_tags_on_tag_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -66,5 +75,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_192720) do
 
   add_foreign_key "facts", "locations"
   add_foreign_key "landmarks", "locations"
+  add_foreign_key "location_tags", "locations"
+  add_foreign_key "location_tags", "tags"
   add_foreign_key "locimages", "locations"
 end
