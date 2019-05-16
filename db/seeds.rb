@@ -19,3 +19,6 @@ meer.create_reference_to_tag_by_name("fishing")
 meer.facts.create(factoid: "Meer is Dutch for lake")
 meer.facts.create(factoid: "This meer was once a brackish portion of wetland that drained into the East River.")
 meer.locimages.create(url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Dana_Discovery_Center%2C_Central_Park_NY.JPG", alt: "The Dana Discovery Center at the Harlem Meer")
+meer.locimages.create(url: "https://upload.wikimedia.org/wikipedia/common
+s/thumb/8/8b/Central_Park_New_York_October_2016_panorama_1.jpg/1200px-Central_Park_New_York_Oct
+ober_2016_panorama_1.jpg", alt: "view of water at meer")

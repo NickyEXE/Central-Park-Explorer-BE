@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
-  has_many :locations, through: :location_tags
+  has_many :location_tags
+  has_many :locations, :through => :location_tags
   belongs_to :interest
 end
