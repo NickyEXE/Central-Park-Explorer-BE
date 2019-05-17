@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   get '/locations/:id', to: 'location#show', as: 'location'
   post '/users/create', to: 'user#create'
-  post '/login', to: 'auth#login'
+  post '/login', to: 'auth#create'
 end
