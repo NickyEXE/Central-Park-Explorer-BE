@@ -5,7 +5,7 @@ class UserController < ApplicationController
     if @user.save
       render json: @user
     else
-      render json: {error: "Invalid username or password."}
+      render json: {error: @user.errors.full_messages}
     end
   end
 
