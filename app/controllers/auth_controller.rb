@@ -8,7 +8,11 @@ class AuthController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: { user: @user, jwt: token }, status: :accepted
     else
-      render json: {errors: "We couldn't find someone with that username.", type: "username"}, status: :unauthorized
+      if @user
+        render json: {errors: "That password was incorrect!", type: "password"}, status: :unauthorized
+      else
+        render json: {errors: "We couldn't find someone with that username.", type: "username"}, status: :unauthorized
+      end
     end
   end
 
