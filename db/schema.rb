@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_15_194208) do
+ActiveRecord::Schema.define(version: 2019_05_17_150303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_194208) do
     t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["location_id"], name: "index_landmarks_on_location_id"
   end
 
@@ -71,6 +72,13 @@ ActiveRecord::Schema.define(version: 2019_05_15_194208) do
     t.datetime "updated_at", null: false
     t.bigint "interest_id"
     t.index ["interest_id"], name: "index_tags_on_interest_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "facts", "locations"
