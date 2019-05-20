@@ -16,6 +16,19 @@ class AuthController < ApplicationController
     end
   end
 
+  def auto_login
+    if decoded_token
+      @user = User.find_by(id: decoded_token[0]["user_id"])
+        if @user
+          render json: @user
+        else
+          render json: {errors: "Couldn't find a user matching the shared decoded auth token"}
+        end
+    else
+      render json: {errors: "Something happened. That decoded token was invalid."}
+    end
+  end
+
   private
 
   def user_login_params
