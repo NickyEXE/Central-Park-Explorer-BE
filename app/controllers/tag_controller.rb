@@ -7,9 +7,9 @@ class TagController < ApplicationController
   end
 
   def create
-    @tag = LocationTag.find_or_create_by(location_id: params[:id], user_id: current_user.id, tag_id: params[:tag_id])
-    if @tag
-      @tag.update(review: params[:review])
+    @locationtag = LocationTag.find_or_create_by(location_id: params[:id], user_id: current_user.id, tag_id: params[:tag_id])
+    if @locationtag
+      @locationtag.update(review: params[:review])
       @location = Location.find(params[:id])
       render json: @location
     else
