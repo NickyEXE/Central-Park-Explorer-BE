@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_191738) do
+ActiveRecord::Schema.define(version: 2019_05_21_162219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,11 @@ ActiveRecord::Schema.define(version: 2019_05_20_191738) do
     t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "review"
+    t.bigint "user_id"
     t.index ["location_id"], name: "index_location_tags_on_location_id"
     t.index ["tag_id"], name: "index_location_tags_on_tag_id"
+    t.index ["user_id"], name: "index_location_tags_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|

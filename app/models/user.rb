@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   has_many :userinterests
   has_many :interests, through: :userinterests
+  has_many :location_tags
+  has_many :tags, through: :location_tags
 
 
   def create_interest_by_id(id)

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/locations/:id', to: 'location#show', as: 'location'
+  get '/tags/:id', to: 'tag#show', as: 'tag'
+  post '/tags/:id', to: 'tag#create', as: 'new_tag'
   get '/locations', to: 'location#index', as: 'locations'
   post '/users/create', to: 'user#create'
   post '/login', to: 'auth#create'
