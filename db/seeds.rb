@@ -103,3 +103,5 @@ water.facts.create(factoid: "The Model Boat Pond features in the film Stuart Lit
 water.create_reference_to_tag_by_name("kids")
 water.create_reference_to_tag_by_name("art")
 water.create_reference_to_tag_by_name("architecture")
+water.locimages.create(url: "https://www.centralpark.com/downloads/1995/download/conservatory-water.jpe?cb=1c0c259b0b32ab1de90a5a84c9ac0c69&w=1200", alt: "Boat pond with view of skyline")
+water.locimages.create(url: "http://assets.centralparknyc.org/images/things-to-see-and-do/kerbs-l.jpg", alt: "Kerbs Boathouse")

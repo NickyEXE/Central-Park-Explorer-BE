@@ -9,4 +9,9 @@ class LocationController < ApplicationController
     end
   end
 
+  def index
+    @locations = Location.all
+    render json: @locations
+  end
+
 end

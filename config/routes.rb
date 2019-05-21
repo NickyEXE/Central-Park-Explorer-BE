@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/locations/:id', to: 'location#show', as: 'location'
+  get '/locations', to: 'location#index', as: 'locations'
   post '/users/create', to: 'user#create'
   post '/login', to: 'auth#create'
   get '/auto_login', to: 'auth#auto_login'
