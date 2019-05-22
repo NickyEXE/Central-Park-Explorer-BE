@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/auto_login', to: 'auth#auto_login'
   get '/interests', to: 'interest#share_all_interests'
   post '/interests', to: 'interest#add_interests_to_user'
+  get '/locationtags/:locationid/:tagid', to: 'location_tag#show', as: 'location_tag'
 end
