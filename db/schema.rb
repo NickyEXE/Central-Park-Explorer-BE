@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_162219) do
+ActiveRecord::Schema.define(version: 2019_05_23_153332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,15 @@ ActiveRecord::Schema.define(version: 2019_05_21_162219) do
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.geometry "geom", limit: {:srid=>0, :type=>"multi_polygon"}
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations_ref", primary_key: "gid", id: :serial, force: :cascade do |t|
+    t.bigint "id"
+    t.string "name", limit: 80
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon"}
   end
 
   create_table "locimages", force: :cascade do |t|
