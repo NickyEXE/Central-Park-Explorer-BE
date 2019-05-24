@@ -9,8 +9,9 @@
 # Dir.glob(`#{Rails.root}/db/seeds/*.rb`).each { |f| require f}
 connection = ActiveRecord::Base.connection()
 
-file_array = ["Cedar_Hill-polygon.shp", "Columbus_Circle_-_Southwest_Park-polygon.shp", "Conservatory_Water-polygon.shp", "The_Pond-polygon.shp", "Harlem_Meer-polygon.shp", "Sheep_Meadow-polygon.shp", "The_Lake_South_Shore-polygon.shp", "The_Mall-polygon.shp", "The_Ramble-polygon.shp"]
+file_array = ["Columbus_Circle_-_Southwest_Park-polygon.shp", "Conservatory_Water-polygon.shp", "The_Pond-polygon.shp", "Harlem_Meer-polygon.shp", "The_Lake_South_Shore-polygon.shp", "The_Mall-polygon.shp"]
 
+# not yet built out ["Cedar_Hill-polygon.shp", "Sheep_Meadow-polygon.shp", "The_Ramble-polygon.shp"]
 
 file_array.each do |file|
   shp_sql = `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{Rails.root.join('db', 'shapefiles', file)} locations_ref`
@@ -34,6 +35,9 @@ pond.update(description: "The southeast corner of the park is often the most cro
 meer.landmarks.create(name: "Fort Clinton", description: "Formerly a military fortification during the Revolutionary War and War of 1812, a cannon still marks the spot overlooking the Meer, along with some picnic benches.", image: "https://forgotten-ny.com/wp-content/uploads/2017/05/fort.clinton1.jpg")
 meer.landmarks.create(name: "Conservatory Garden", description: "A six acre garden in the middle of New York City, depending on the time of year you'll feel like you're either in The Favourite or The Shining.", image: "http://assets.centralparknyc.org/images/things-to-see-and-do/conservatory-garden-l.jpg")
 meer.landmarks.create(name: "Lasker Rink and Swimming Pool", description: "Just south of Farmers Gate off the 2/3 train, Lasker Rink is a go-to for swimming during the summer and skating/hockey during the winter. It is currently cancelled though, as it is run by the Trump Organization.", image: "http://michaelminn.net/newyork/parks/central-park/lasker-rink/2004-03-07_16-09-41.jpg")
+meer.locimages.create(url: "https://www.centralpark.com/downloads/2613/download/fishing-in-the-meer.jpe?cb=783665e2e86dabe11fdbe675f24e26c4&w=640", alt: "Fishing at the Harlem Meer")
+
+
 fishing = Interest.create(name: "Fishing")
 wildlife = Interest.create(name: "Wildlife")
 flora = Interest.create(name: "Flora")
