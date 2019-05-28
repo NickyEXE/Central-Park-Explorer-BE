@@ -15,6 +15,13 @@ class LocationController < ApplicationController
   end
 
   def redirect
+    # @location_object = Location.nearest_places(params[:latitude].to_f, params[:longitude].to_f)
+    # if @location_object
+    #   render json: @location_object
+    # else
+    #   render json: {error: "We were unable to use your latitude and longitude. It's likely that you need to enable your location to use this feature."}
+    # end
+
     @location = Location.find_location(params[:latitude].to_f, params[:longitude].to_f)
     if @location
       render json: {id: @location.id}

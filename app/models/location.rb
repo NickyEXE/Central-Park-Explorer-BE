@@ -16,10 +16,26 @@ class Location < ApplicationRecord
     LocationTag.create(location_id: self.id, tag_id: Tag.find_by(tag: tag).id, user_id: id, review: review)
   end
 
+  def self.nearest_places(lat, long)
+    factory = RGeo::Cartesian.factory
+    point = factory.point(long,lat)
+    nearest_places_array = self.all.sort_by{|location| location.geom.distance(point)}
+    byebug
+    if nearest_places_array[0].geom.contains?(point)
+      {current_location: nearest_places_array[0], nearest_places: nearest_places_array.slice(1,5)}
+    else
+      {nearest_places: self.all.sort_by{|location| location.geom.distance(factory.point(long, lat))}.slice(0,4)}
+    end
+  end
+
   def self.find_location(lat, long)
     factory = RGeo::Cartesian.factory
     matching_locations = self.all.select{|location| location.geom.contains?(factory.point(long,lat))}
     matching_locations[0]
+  end
+
+  def center
+    {latitude: self.geom.centroid.y, longitude: self.geom.centroid.x}
   end
 
 end
