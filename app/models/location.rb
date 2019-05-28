@@ -20,7 +20,6 @@ class Location < ApplicationRecord
     factory = RGeo::Cartesian.factory
     point = factory.point(long,lat)
     nearest_places_array = self.all.sort_by{|location| location.geom.distance(point)}
-    byebug
     if nearest_places_array[0].geom.contains?(point)
       {current_location: nearest_places_array[0], nearest_places: nearest_places_array.slice(1,5)}
     else
