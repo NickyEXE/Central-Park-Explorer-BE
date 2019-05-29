@@ -3,6 +3,7 @@ class Location < ApplicationRecord
   has_many :facts
   has_many :location_tags
   has_many :tags, :through => :location_tags
+  has_many :interests, :through => :tags
   has_many :locimages
 
 
@@ -21,7 +22,7 @@ class Location < ApplicationRecord
     point = factory.point(long,lat)
     nearest_places_array = self.all.sort_by{|location| location.geom.distance(point)}
     if nearest_places_array[0].geom.contains?(point)
-      {current_location: nearest_places_array[0], nearest_places: nearest_places_array.slice(1,5)}
+      {current_location: nearest_places_array[0], nearest_places: nearest_places_array.slice(1,5).map{|location| NearbyPlacesSerializer.new(location)}}
     else
       {nearest_places: self.all.sort_by{|location| location.geom.distance(factory.point(long, lat))}.slice(0,4)}
     end
@@ -35,6 +36,22 @@ class Location < ApplicationRecord
 
   def center
     {latitude: self.geom.centroid.y, longitude: self.geom.centroid.x}
+  end
+
+
+  def interests_matching_array(interest_array)
+    # (self.interests.map{|interest| interest.id} & interest_array).length
+    (self.interests & interest_array)
+  end
+
+  def matching_user_interests(user)
+    interests_matching_array(user.interests)
+    # interests_matching_array(user.interests.map{|interest| interest.id})
+  end
+
+
+  def self.sort_by_matching_user_interests(user)
+    self.all.sort{|location| location.matching_user_interests(user).length}
   end
 
 end

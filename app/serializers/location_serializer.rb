@@ -1,5 +1,5 @@
 class LocationSerializer < ActiveModel::Serializer
-  attributes :name, :description, :id, :landmarks, :facts, :locimages, :tags, :center, :nearby_places
+  attributes :name, :description, :id, :landmarks, :facts, :locimages, :tags, :center, :geom, :nearby_places
 
 
   def tags
