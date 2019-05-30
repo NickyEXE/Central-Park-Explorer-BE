@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/locations/recommend', to: 'location#recommend_based_on_interests', as 'recommend'
+  get '/locations/recommend', to: 'location#recommend_based_on_interests', as: 'recommend'
   get '/locations/:id', to: 'location#show', as: 'location'
   get '/tags/:id', to: 'tag#show', as: 'tag'
   post '/tags/:id', to: 'tag#create', as: 'new_tag'

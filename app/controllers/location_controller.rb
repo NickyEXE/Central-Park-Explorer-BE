@@ -11,7 +11,7 @@ class LocationController < ApplicationController
 
   def index
     @locations = Location.all
-    render json: @locations
+    render json: @locations, each_serializer: RecommendedPlacesSerializer, user: current_user
   end
 
   def redirect
@@ -26,7 +26,7 @@ class LocationController < ApplicationController
 
   def recommend_based_on_interests
     locations = Location.sort_by_matching_user_interests(current_user)
-    render json: RecommendedPlacesSerializer.new(locations), user: current_user
+    render json: locations, each_serializer: RecommendedPlacesSerializer, user: current_user
   end
 
   #   @location = Location.find_location(params[:latitude].to_f, params[:longitude].to_f)

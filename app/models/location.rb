@@ -38,18 +38,14 @@ class Location < ApplicationRecord
     {latitude: self.geom.centroid.y, longitude: self.geom.centroid.x}
   end
 
-
-  def interests_matching_array(interest_array)
-    # (self.interests.map{|interest| interest.id} & interest_array).length
-    (self.interests & interest_array)
-  end
-
+  # Looks at all the Interests matching tags that a Location has been tagged with
+  # and compares it to an array of interests matching the User's interests,
+  # then returns the interests they share.
   def matching_user_interests(user)
-    interests_matching_array(user.interests)
-    # interests_matching_array(user.interests.map{|interest| interest.id})
+    (self.interests & user.interests)
   end
 
-
+  # sorts all locations by how many matches they have with the user
   def self.sort_by_matching_user_interests(user)
     self.all.sort{|location| location.matching_user_interests(user).length}
   end

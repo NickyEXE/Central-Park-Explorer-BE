@@ -1,5 +1,5 @@
-class NearbyPlacesSerializer < ActiveModel::Serializer
-  attributes :name, :description, :image, :alt, :id
+class RecommendedPlacesSerializer < ActiveModel::Serializer
+  attributes :name, :description, :image, :alt, :id, :interests
 
   def name
     self.object.name
@@ -18,8 +18,7 @@ class NearbyPlacesSerializer < ActiveModel::Serializer
   end
 
   def interests
-    byebug
-    self.object.matching_user_interests(@instance_options[:scope][:user])
+    self.object.matching_user_interests(@instance_options[:user])
   end
 
 end
