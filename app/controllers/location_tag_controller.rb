@@ -6,7 +6,7 @@ class LocationTagController < ApplicationController
   end
 
   def destroy
-    @location_tag = LocationTag.find(params[:locationid])
+    @location_tag = LocationTag.find(params[:id])
     if @location_tag.user_id === current_user.id
       @location_tag.destroy
       render json: current_user

@@ -13,7 +13,7 @@ file_array = ["Columbus_Circle_-_Southwest_Park-polygon.shp", "Great_Hill-polygo
 
 file_array.each do |file|
   shp_sql = `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{Rails.root.join('db', 'shapefiles', file)} locations_ref`
-  puts shp_sql
+
   connection.execute "drop table if exists locations_ref"
   connection.execute shp_sql
   connection.execute <<-SQL
