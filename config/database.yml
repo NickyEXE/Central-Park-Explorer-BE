@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: CentralParkExplorer_production
+  url: <%= ENV.fetch('DATABASE_URL', '').sub(/^postgres/, "postgis") %>
   username: CentralParkExplorer
   password: <%= ENV['CENTRALPARKEXPLORER_DATABASE_PASSWORD'] %>
