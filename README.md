@@ -1,24 +1,9 @@
-# README
+# Central Park Explorer Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Rails App uses a custom seedfile and PostGIS database with custom Shapefiles to populate data about the various areas of Central Park. It takes in the current location from a user's device and yields back their area within the park along with various details.
 
-Things you may want to cover:
+Additionally, the app takes in user reviews and info to provide personalized recommendations for Central Park exploring.
 
-* Ruby version
+The front-end repo is available [here](https://github.com/NickyEXE/Central-Park-Explorer).
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+For a demo of the app in use, go [here](https://www.youtube.com/watch?v=ifG5abztRGU).
